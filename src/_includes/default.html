@@ -11,25 +11,30 @@
       <meta name="description" content="{{description}}"/>
     {% endif %}
     {% block head %}{% endblock %}
+
     <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-    {% if prism == true %}
-      <link rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css">
-    {% endif %}
   </head>
-  <body>
+  <body class="bg-yellow-100/25">
+    {% include "./partials/colours.html" %}
     {% include "./partials/navbar.html" %}
 
-    {{ content | safe }}
+    <div class="mx-auto max-w-5xl md:grid md:grid-cols-3 md:grid-rows-1 gap-8">
+      <div class="col-span-2">
+        {{ content | safe }}
+      </div>
+      <div class="col-start-3">
+        {% include "./partials/maillist.html" %}
+        {% include "./partials/about.html"}
+      </div>
+  </div>
+      
 
     {% include "./partials/footer.html" %}
-
+    <div class="fixed bottom-0 min-w-full">{% include "./partials/colours.html" %}</div>
+    
     <script src="/static/js/alpine.js"></script>
-
-    {% if path == "home" %}
-      <!-- Netlify Identity Widget -->
-      <!-- Needed only if you are using Netlify Identity feature -->
-      <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    {% endif %}
-
+    <script>
+      document.querySelector(".upcoming").classList.add("current");
+    </script>
   </body>
 </html>

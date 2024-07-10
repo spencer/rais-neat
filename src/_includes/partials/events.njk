@@ -1,0 +1,21 @@
+<div x-data="compare" class="w-full max-w-2xl grid grid-cols-1 gap-4 my-8 px-4 lg:mx-0">
+  {%- set thisSeason %}
+    2023/24
+  {%- endset -%}
+  <h1 class="text-3xl font-bold">{{thisSeason}}</h1>
+  {% for event in events.details | pluckFromData(thisSeason, 'season') %}
+    <div x-bind:class="eventDate('{{event.date}}')"class="p-4 rounded-md border border-yellow-400 bg-yellow-100/50">
+      {{ event.date | ukDate }} ~ {{event.title}} - {{event.presenter}}
+    </div>
+  {% endfor %}
+
+  {%- set previousSeason %}
+    2022/23
+  {%- endset -%}
+  <h1 class="text-3xl font-bold">{{previousSeason}}</h1>
+  {% for event in events.details | pluckFromData(previousSeason, 'season') %}
+    <div x-bind:class="eventDate('{{event.date}}')"class="p-4 rounded-md border border-yellow-400 bg-yellow-100/50">
+      {{ event.date | ukDate }} ~ {{event.title}} - {{event.presenter}}
+    </div>
+  {% endfor %}
+</div>

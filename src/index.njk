@@ -1,0 +1,39 @@
+---
+layout: default
+title: Ringwood Anglo Italian Society
+path: home
+---
+<div class="container mx-auto lg:h-fit flex flex-col">
+  <h1 class="text-2xl font-bold text-red-700">RAIS Programme</h1>
+  <div x-data="compare" class="w-full max-w-2xl grid grid-cols-1 gap-4 my-8 lg:mx-0">
+  {% for eventYear, raisEvents in raisEvents | groupby('fields.eventYear') %}
+    <div class="text-xl text-black font-bold">{{ eventYear }}</div>
+    {% for event in raisEvents %}
+    <div x-bind:class="eventDate('{{event.fields.eventDate}}')"class="p-4 rounded-md border border-yellow-400 bg-yellow-100/50">
+      {{ event.fields.eventDate | ukDate }} ~ {{event.fields.eventTitle}} - {{event.fields.eventPresenter}}
+    </div>
+    {% endfor %}
+  {% endfor %}
+<p>* One week later than normal due to Bank Holidays</p>
+<p>Our meetings will continue to be run as "Hybrid" meetings in which members can join us in person at Greyfriars Community Centre OR for those who are at a distance or who are reluctant to attend in person you can join us online using zoom 7p.m. for 7.30 p.m. on the first Monday of the month.</p>
+<p>A Zoom link (Invitation) will be sent out the day before the presentation.</p>
+<p>Membership costs just £12 per person per year.</p>
+<p>Visitors are welcome (£3 per person per meeting).</p>
+  </div>
+</div>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('compare', () => ({
+      eventDate: (ed) => {
+        today = new Date();
+        event = new Date(ed);
+        switch (true) {
+          case event >= today:
+            return "upcoming";
+          case event < today:
+            return "past opacity-40";
+        };
+      },
+    }))
+  })
+</script>

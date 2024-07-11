@@ -11,8 +11,28 @@
       <meta name="description" content="{{description}}"/>
     {% endif %}
     {% block head %}{% endblock %}
-
     <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <link
+      rel="stylesheet"
+      href="https://sibforms.com/forms/end-form/build/sib-styles.css"
+    />
+    <style>
+      #sib-container input:-ms-input-placeholder {
+        text-align: left;
+        font-family: "Helvetica", sans-serif;
+        color: #c0ccda;
+      }
+
+      #sib-container input::placeholder {
+        text-align: left;
+        font-family: "Helvetica", sans-serif;
+        color: #c0ccda;
+      }
+
+      .sib-form-block {
+        padding: 0 !important;
+      }
+    </style>
   </head>
   <body class="bg-yellow-100/25">
     {% include "./partials/colours.html" %}
@@ -24,7 +44,7 @@
       </div>
       <div class="col-start-3">
         {% include "./partials/maillist.html" %}
-        {% include "./partials/about.html"}
+        {% include "./partials/about.html" %}
       </div>
   </div>
       
@@ -33,6 +53,27 @@
     <div class="fixed bottom-0 min-w-full">{% include "./partials/colours.html" %}</div>
     
     <script src="/static/js/alpine.js"></script>
+    <script>
+      window.REQUIRED_CODE_ERROR_MESSAGE = "Please choose a country code";
+      window.LOCALE = "en";
+      window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
+
+      window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+
+      window.GENERIC_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
+
+      window.translation = {
+        common: {
+          selectedList: "{quantity} list selected",
+          selectedLists: "{quantity} lists selected",
+        },
+      };
+
+      var AUTOHIDE = Boolean(0);
+    </script>
+    <script src="https://sibforms.com/forms/end-form/build/main.js"></script>
     <script>
       document.querySelector(".upcoming").classList.add("current");
     </script>

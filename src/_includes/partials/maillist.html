@@ -4,6 +4,15 @@
       href="https://sibforms.com/forms/end-form/build/sib-styles.css"
     />
     <style>
+      .sib-form {
+        padding: 0 !important;
+        margin-bottom: 12px
+      }
+      
+      #sib-container {
+        padding: 0 12px !important;
+      }
+
       #sib-container input:-ms-input-placeholder {
         text-align: left;
         font-family: "Helvetica", sans-serif;
@@ -16,6 +25,10 @@
         color: #c0ccda;
       }
 
+      #sib-form-container {
+        padding: 0;
+      }
+
       .sib-form-block {
         padding: 0 !important;
       }
@@ -23,7 +36,7 @@
 {% endblock %}
 
 <div class="sib-form">
-  <div id="sib-form-container" class="sib-form-container">
+  <div id="sib-form-container" class="sib-form-container px-4">
     <div
             id="error-message"
             class="sib-form-message-panel"
